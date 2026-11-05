@@ -135,7 +135,7 @@ function UsageGroup(props: { group: UpstreamUsageGroup }) {
   )
 }
 
-export function UpstreamUsagePanel() {
+export function UpstreamUsagePanel(props: { className?: string }) {
   const { t } = useTranslation()
   const query = useQuery({
     queryKey: ['dashboard', 'overview', 'upstream-usage'],
@@ -164,6 +164,7 @@ export function UpstreamUsagePanel() {
           : t('No upstream quota configured')
       }
       height='h-40'
+      className={props.className}
       headerActions={
         <Button
           variant='ghost'
