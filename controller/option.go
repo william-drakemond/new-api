@@ -404,6 +404,12 @@ func UpdateOption(c *gin.Context) {
 			common.ApiError(c, err)
 			return
 		}
+	case "console_setting.upstream_usage_url":
+		err = console_setting.ValidateConsoleSettings(option.Value.(string), "UpstreamUsageURL")
+		if err != nil {
+			common.ApiError(c, err)
+			return
+		}
 	}
 	if model.IsPasskeyDomainOption(option.Key) {
 		change, updateErr := model.UpdatePasskeyDomainOptions(map[string]string{option.Key: option.Value.(string)}, false, "")

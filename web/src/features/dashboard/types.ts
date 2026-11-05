@@ -183,6 +183,32 @@ export interface UptimeGroupResult {
 }
 
 // ============================================================================
+// Upstream Quota Types
+// ============================================================================
+
+/** One spending window of the upstream gateway, e.g. its 5-hour or weekly limit. */
+export interface UpstreamUsageWindow {
+  window: string
+  percent: number
+  /** Absent while the window is idle: it starts with the next request. */
+  resets_at: string | null
+}
+
+export interface UpstreamUsageGroup {
+  channel: string
+  name: string
+  windows: UpstreamUsageWindow[] | null
+  /** Set while the provider has locked every upstream account. */
+  locked_until?: string
+  error?: string
+}
+
+export interface UpstreamUsage {
+  generated_at: string
+  groups: UpstreamUsageGroup[]
+}
+
+// ============================================================================
 // Dashboard Filter Types
 // ============================================================================
 

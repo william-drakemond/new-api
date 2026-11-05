@@ -22,6 +22,7 @@ import type {
   FlowQuotaDataItem,
   QuotaDataItem,
   UptimeGroupResult,
+  UpstreamUsage,
 } from './types'
 
 // ============================================================================
@@ -89,5 +90,15 @@ export async function getUptimeStatus() {
   const res = await api.get<{ success: boolean; data: UptimeGroupResult[] }>(
     '/api/uptime/status'
   )
+  return res.data
+}
+
+// Get the upstream gateway's quota windows (null data while the panel is off)
+export async function getUpstreamUsage() {
+  const res = await api.get<{
+    success: boolean
+    message?: string
+    data: UpstreamUsage | null
+  }>('/api/upstream_usage')
   return res.data
 }

@@ -7391,6 +7391,21 @@
     "Zhipu": "Zhipu",
     "Zhipu GLM": "Zhipu GLM",
     "Zhipu V4": "Zhipu V4",
-    "Zoom": "Zoom"
+    "Zoom": "Zoom",
+    "5 hours": "5 heures",
+    "Starts with the next request": "Démarre à la prochaine requête",
+    "Resets {{time}}": "Réinitialisation {{time}}",
+    "Upstream quota is unavailable": "Le quota en amont est indisponible",
+    "Locked by the provider until {{time}}": "Bloqué par le fournisseur jusqu'au {{time}}",
+    "Upstream quota": "Quota en amont",
+    "Share of the upstream spending limits in use": "Part utilisée des limites de dépense en amont",
+    "No upstream quota configured": "Aucun quota en amont configuré",
+    "Upstream Quota": "Quota en amont",
+    "Upstream quota URL must be an http or https URL without credentials": "L'URL du quota en amont doit être une URL http ou https sans identifiants",
+    "Enter the upstream quota URL to show the panel": "Saisissez l'URL du quota en amont pour afficher le panneau",
+    "Show upstream quota on the overview": "Afficher le quota en amont dans la vue d'ensemble",
+    "Signed-in users see how much of each upstream spending limit is in use and when it resets.": "Les utilisateurs connectés voient la part utilisée de chaque limite de dépense en amont et sa réinitialisation.",
+    "Upstream quota URL": "URL du quota en amont",
+    "The data address of the upstream gateway usage page. The server fetches it; browsers never contact it.": "Adresse des données de la page d'utilisation de la passerelle en amont. Le serveur la lit ; les navigateurs ne la contactent jamais."
   }
 }

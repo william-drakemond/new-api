@@ -7391,6 +7391,21 @@
     "Zhipu": "Zhipu",
     "Zhipu GLM": "Zhipu GLM",
     "Zhipu V4": "Zhipu V4",
-    "Zoom": "Zoom"
+    "Zoom": "Zoom",
+    "5 hours": "5 часов",
+    "Starts with the next request": "Начнётся со следующего запроса",
+    "Resets {{time}}": "Сброс {{time}}",
+    "Upstream quota is unavailable": "Квота вышестоящего сервиса недоступна",
+    "Locked by the provider until {{time}}": "Заблокировано провайдером до {{time}}",
+    "Upstream quota": "Квота вышестоящего сервиса",
+    "Share of the upstream spending limits in use": "Использованная доля лимитов расходов вышестоящего сервиса",
+    "No upstream quota configured": "Квота вышестоящего сервиса не настроена",
+    "Upstream Quota": "Квота вышестоящего сервиса",
+    "Upstream quota URL must be an http or https URL without credentials": "URL квоты вышестоящего сервиса должен быть адресом http или https без учётных данных",
+    "Enter the upstream quota URL to show the panel": "Укажите URL квоты вышестоящего сервиса, чтобы показать панель",
+    "Show upstream quota on the overview": "Показывать квоту вышестоящего сервиса в обзоре",
+    "Signed-in users see how much of each upstream spending limit is in use and when it resets.": "Вошедшие пользователи видят, какая доля каждого лимита расходов использована и когда он сбросится.",
+    "Upstream quota URL": "URL квоты вышестоящего сервиса",
+    "The data address of the upstream gateway usage page. The server fetches it; browsers never contact it.": "Адрес данных страницы использования вышестоящего шлюза. Его читает сервер; браузеры к нему не обращаются."
   }
 }

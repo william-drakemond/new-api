@@ -7391,6 +7391,21 @@
     "Zhipu": "Zhipu",
     "Zhipu GLM": "Zhipu GLM",
     "Zhipu V4": "Zhipu V4",
-    "Zoom": "Zoom"
+    "Zoom": "Zoom",
+    "5 hours": "5 giờ",
+    "Starts with the next request": "Bắt đầu từ yêu cầu tiếp theo",
+    "Resets {{time}}": "Đặt lại {{time}}",
+    "Upstream quota is unavailable": "Không thể đọc hạn mức thượng nguồn",
+    "Locked by the provider until {{time}}": "Bị nhà cung cấp khóa đến {{time}}",
+    "Upstream quota": "Hạn mức thượng nguồn",
+    "Share of the upstream spending limits in use": "Tỷ lệ đã dùng của các giới hạn chi tiêu thượng nguồn",
+    "No upstream quota configured": "Chưa cấu hình hạn mức thượng nguồn",
+    "Upstream Quota": "Hạn mức thượng nguồn",
+    "Upstream quota URL must be an http or https URL without credentials": "URL hạn mức thượng nguồn phải là URL http hoặc https không chứa thông tin đăng nhập",
+    "Enter the upstream quota URL to show the panel": "Nhập URL hạn mức thượng nguồn để hiển thị bảng",
+    "Show upstream quota on the overview": "Hiển thị hạn mức thượng nguồn trong tổng quan",
+    "Signed-in users see how much of each upstream spending limit is in use and when it resets.": "Người dùng đã đăng nhập thấy tỷ lệ đã dùng của từng giới hạn chi tiêu thượng nguồn và thời điểm đặt lại.",
+    "Upstream quota URL": "URL hạn mức thượng nguồn",
+    "The data address of the upstream gateway usage page. The server fetches it; browsers never contact it.": "Địa chỉ dữ liệu của trang sử dụng cổng thượng nguồn. Máy chủ đọc địa chỉ này; trình duyệt không truy cập trực tiếp."
   }
 }

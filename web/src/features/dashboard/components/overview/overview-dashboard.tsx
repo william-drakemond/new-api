@@ -68,6 +68,7 @@ import { ApiInfoPanel } from './api-info-panel'
 import { FAQPanel } from './faq-panel'
 import { PerformanceHealthPanel } from './performance-health-panel'
 import { SummaryCards } from './summary-cards'
+import { UpstreamUsagePanel } from './upstream-usage-panel'
 import { UptimePanel } from './uptime-panel'
 
 const SETUP_GUIDE_VISIBILITY_STORAGE_KEY =
@@ -471,6 +472,7 @@ export function OverviewDashboard() {
     announcements: showAnnouncementsPanel,
     faq: showFAQPanel,
     uptimeKuma: showUptimePanel,
+    upstreamUsage: showUpstreamUsagePanel,
   } = useDashboardContentVisibility()
   const [manualSetupGuideExpanded, setManualSetupGuideExpanded] = useState<
     boolean | null
@@ -616,7 +618,8 @@ export function OverviewDashboard() {
     manualSetupGuideExpanded ?? (setupStatusReady && !setupComplete)
   const showLeftContentPanels =
     isAdmin || showApiInfoPanel || showAnnouncementsPanel || showFAQPanel
-  const showContentPanels = showLeftContentPanels || showUptimePanel
+  const showRightContentPanels = showUptimePanel || showUpstreamUsagePanel
+  const showContentPanels = showLeftContentPanels || showRightContentPanels
 
   const handleSetupGuideToggle = () => {
     const nextExpanded = !setupGuideExpanded
@@ -794,7 +797,7 @@ export function OverviewDashboard() {
               className={cn(
                 'grid grid-cols-1 gap-4',
                 showLeftContentPanels &&
-                  showUptimePanel &&
+                  showRightContentPanels &&
                   'xl:grid-cols-[minmax(0,1fr)_22rem]'
               )}
             >
@@ -830,10 +833,19 @@ export function OverviewDashboard() {
                   )}
                 </div>
               )}
-              {showUptimePanel && (
-                <CardStaggerItem>
-                  <UptimePanel />
-                </CardStaggerItem>
+              {showRightContentPanels && (
+                <div className='flex min-w-0 flex-col gap-4'>
+                  {showUpstreamUsagePanel && (
+                    <CardStaggerItem>
+                      <UpstreamUsagePanel />
+                    </CardStaggerItem>
+                  )}
+                  {showUptimePanel && (
+                    <CardStaggerItem>
+                      <UptimePanel />
+                    </CardStaggerItem>
+                  )}
+                </div>
               )}
             </CardStaggerContainer>
           )}

@@ -7391,6 +7391,21 @@
     "Zhipu": "Zhipu",
     "Zhipu GLM": "Zhipu GLM",
     "Zhipu V4": "Zhipu V 4",
-    "Zoom": "ズーム"
+    "Zoom": "ズーム",
+    "5 hours": "5時間",
+    "Starts with the next request": "次のリクエストから計測開始",
+    "Resets {{time}}": "{{time}}にリセット",
+    "Upstream quota is unavailable": "上流のクォータを取得できません",
+    "Locked by the provider until {{time}}": "プロバイダーによりロック中（{{time}} まで）",
+    "Upstream quota": "上流クォータ",
+    "Share of the upstream spending limits in use": "上流の利用上限に対する使用率",
+    "No upstream quota configured": "上流クォータが設定されていません",
+    "Upstream Quota": "上流クォータ",
+    "Upstream quota URL must be an http or https URL without credentials": "上流クォータの URL は認証情報を含まない http または https の URL である必要があります",
+    "Enter the upstream quota URL to show the panel": "パネルを表示するには上流クォータの URL を入力してください",
+    "Show upstream quota on the overview": "概要に上流クォータを表示",
+    "Signed-in users see how much of each upstream spending limit is in use and when it resets.": "ログインユーザーは、上流の各利用上限の使用率とリセット時刻を確認できます。",
+    "Upstream quota URL": "上流クォータの URL",
+    "The data address of the upstream gateway usage page. The server fetches it; browsers never contact it.": "上流ゲートウェイの使用量ページのデータアドレス。サーバーが取得し、ブラウザーは直接アクセスしません。"
   }
 }

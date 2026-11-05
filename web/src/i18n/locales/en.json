@@ -7391,6 +7391,21 @@
     "Zhipu": "Zhipu",
     "Zhipu GLM": "Zhipu GLM",
     "Zhipu V4": "Zhipu V4",
-    "Zoom": "Zoom"
+    "Zoom": "Zoom",
+    "5 hours": "5 hours",
+    "Starts with the next request": "Starts with the next request",
+    "Resets {{time}}": "Resets {{time}}",
+    "Upstream quota is unavailable": "Upstream quota is unavailable",
+    "Locked by the provider until {{time}}": "Locked by the provider until {{time}}",
+    "Upstream quota": "Upstream quota",
+    "Share of the upstream spending limits in use": "Share of the upstream spending limits in use",
+    "No upstream quota configured": "No upstream quota configured",
+    "Upstream Quota": "Upstream Quota",
+    "Upstream quota URL must be an http or https URL without credentials": "Upstream quota URL must be an http or https URL without credentials",
+    "Enter the upstream quota URL to show the panel": "Enter the upstream quota URL to show the panel",
+    "Show upstream quota on the overview": "Show upstream quota on the overview",
+    "Signed-in users see how much of each upstream spending limit is in use and when it resets.": "Signed-in users see how much of each upstream spending limit is in use and when it resets.",
+    "Upstream quota URL": "Upstream quota URL",
+    "The data address of the upstream gateway usage page. The server fetches it; browsers never contact it.": "The data address of the upstream gateway usage page. The server fetches it; browsers never contact it."
   }
 }

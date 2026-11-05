@@ -99,9 +99,21 @@ func ValidateConsoleSettings(settingsStr string, settingType string) error {
 		return validateFAQ(settingsStr)
 	case "UptimeKumaGroups":
 		return validateUptimeKumaGroups(settingsStr)
+	case "UpstreamUsageURL":
+		return validateUpstreamUsageURL(settingsStr)
 	default:
 		return common.NewMessage("Unknown setting type: {{type}}", map[string]any{"type": settingType})
 	}
+}
+
+// validateUpstreamUsageURL accepts an http(s) URL without credentials: the server
+// fetches it, and it is shown back to administrators in the settings page.
+func validateUpstreamUsageURL(urlStr string) error {
+	parsed, err := url.Parse(urlStr)
+	if err != nil || (parsed.Scheme != "http" && parsed.Scheme != "https") || parsed.Host == "" || parsed.User != nil {
+		return common.NewMessage("Upstream quota URL must be an http or https URL without credentials")
+	}
+	return nil
 }
 
 func validateApiInfo(apiInfoStr string) error {

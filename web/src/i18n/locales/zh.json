@@ -7391,6 +7391,21 @@
     "Zhipu": "智谱",
     "Zhipu GLM": "智谱GLM",
     "Zhipu V4": "智谱 V4",
-    "Zoom": "缩放"
+    "Zoom": "缩放",
+    "5 hours": "5 小时",
+    "Starts with the next request": "下次请求时开始计时",
+    "Resets {{time}}": "{{time}}重置",
+    "Upstream quota is unavailable": "暂时无法读取上游额度",
+    "Locked by the provider until {{time}}": "已被供应商锁定，预计 {{time}} 恢复",
+    "Upstream quota": "上游额度",
+    "Share of the upstream spending limits in use": "上游各消费限额的已用比例",
+    "No upstream quota configured": "未配置上游额度",
+    "Upstream Quota": "上游额度",
+    "Upstream quota URL must be an http or https URL without credentials": "上游额度地址必须是不含用户名和密码的 http 或 https 地址",
+    "Enter the upstream quota URL to show the panel": "请填写上游额度地址后再开启面板",
+    "Show upstream quota on the overview": "在总览中显示上游额度",
+    "Signed-in users see how much of each upstream spending limit is in use and when it resets.": "登录用户可以看到上游每个消费限额的已用比例和重置时间。",
+    "Upstream quota URL": "上游额度地址",
+    "The data address of the upstream gateway usage page. The server fetches it; browsers never contact it.": "上游网关用量页的数据地址。由服务器读取，浏览器不会直接访问。"
   }
 }

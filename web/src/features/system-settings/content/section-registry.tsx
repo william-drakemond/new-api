@@ -24,6 +24,7 @@ import { ChatSettingsSection } from './chat-settings-section'
 import { DashboardSection } from './dashboard-section'
 import { DrawingSettingsSection } from './drawing-settings-section'
 import { FAQSection } from './faq-section'
+import { UpstreamUsageSection } from './upstream-usage-section'
 import { UptimeKumaSection } from './uptime-kuma-section'
 
 /**
@@ -90,6 +91,16 @@ const CONTENT_SECTIONS = [
       <UptimeKumaSection
         enabled={settings['console_setting.uptime_kuma_enabled']}
         data={settings['console_setting.uptime_kuma_groups']}
+      />
+    ),
+  },
+  {
+    id: 'upstream-usage',
+    titleKey: 'Upstream Quota',
+    build: (settings: ContentSettings) => (
+      <UpstreamUsageSection
+        enabled={settings['console_setting.upstream_usage_enabled']}
+        url={settings['console_setting.upstream_usage_url']}
       />
     ),
   },
