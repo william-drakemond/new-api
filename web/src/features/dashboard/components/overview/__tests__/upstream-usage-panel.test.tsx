@@ -22,7 +22,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { api } from '@/lib/api'
 
-import { UpstreamUsagePanel } from '../upstream-usage-panel'
+import { UpstreamUsagePanel, formatResetIn } from '../upstream-usage-panel'
 
 const NOW = new Date('2026-11-05T18:00:00Z')
 let client: QueryClient
@@ -160,5 +160,33 @@ describe('upstream quota panel', () => {
       await screen.findByText('Upstream quota is unavailable')
     ).toBeInTheDocument()
     expect(screen.queryByRole('progressbar')).not.toBeInTheDocument()
+  })
+})
+
+// The panel used formatTimestampRelative, which keeps one unit and rounds: 6 days 18 hours showed
+// as "in 7 days" and 4 hours 54 minutes as "in 5 hours", disagreeing with the upstream gateway's own
+// usage page. Two units, rounded down, match it.
+describe('formatResetIn', () => {
+  const now = Date.parse('2026-11-08T01:41:00Z')
+  const at = (ms: number) => now + ms
+  const H = 3600_000
+  const M = 60_000
+
+  it('shows days and hours without rounding up to the next day', () => {
+    expect(formatResetIn(at(6 * 24 * H + 18 * H + 15 * M), now, 'en')).toBe('in 6 days 18 hours')
+    expect(formatResetIn(at(6 * 24 * H + 18 * H + 15 * M), now, 'zh-CN')).toBe('6天18小时后')
+  })
+
+  it('shows hours and minutes within a day', () => {
+    expect(formatResetIn(at(4 * H + 54 * M + 30_000), now, 'en')).toBe('in 4 hours 54 minutes')
+    expect(formatResetIn(at(4 * H + 54 * M), now, 'zh-CN')).toBe('4小时54分钟后')
+  })
+
+  it('drops a zero second unit and handles short and past times', () => {
+    expect(formatResetIn(at(5 * H), now, 'en')).toBe('in 5 hours')
+    expect(formatResetIn(at(2 * 24 * H), now, 'en')).toBe('in 2 days')
+    expect(formatResetIn(at(42 * M), now, 'en')).toBe('in 42 minutes')
+    expect(formatResetIn(at(20_000), now, 'en')).toBe('in 1 minute')
+    expect(formatResetIn(at(-5 * M), now, 'en')).toBe('now')
   })
 })

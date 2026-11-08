@@ -29,7 +29,7 @@ import type {
   UpstreamUsageWindow,
 } from '@/features/dashboard/types'
 import { toIntlLocale } from '@/i18n/languages'
-import { formatNumber, formatTimestampRelative } from '@/lib/format'
+import { formatNumber } from '@/lib/format'
 import { requireServerSuccess } from '@/lib/server-error-message'
 import { cn } from '@/lib/utils'
 
@@ -47,6 +47,54 @@ function usageColor(percent: number): string {
   if (percent >= 100) return 'text-rose-500'
   if (percent >= 80) return 'text-amber-500'
   return 'text-emerald-500'
+}
+
+// Time until a reset in two units, rounded down: "in 6 days 18 hours", "6天18小时后". The upstream
+// gateway's usage page shows it this way; formatTimestampRelative keeps one unit and rounds, so a
+// week with 6 days 18 hours left read "in 7 days". The "in …" wrapper is taken from
+// Intl.RelativeTimeFormat, so each locale keeps its own word order.
+export function formatResetIn(
+  resetsAt: number,
+  now: number,
+  locale?: Intl.LocalesArgument
+): string {
+  const remaining = resetsAt - now
+  if (remaining <= 0) {
+    return new Intl.RelativeTimeFormat(locale, { numeric: 'auto' }).format(0, 'second')
+  }
+  // Under a minute still reads "in 1 minute", not "in 0 minutes".
+  const totalMinutes = Math.max(1, Math.floor(remaining / 60_000))
+  // numeric 'always': with 'auto', 1 day is the word "tomorrow" and has no number to replace.
+  const relative = new Intl.RelativeTimeFormat(locale, { numeric: 'always' })
+  const days = Math.floor(totalMinutes / 1440)
+  const hours = Math.floor((totalMinutes % 1440) / 60)
+  const minutes = totalMinutes % 60
+  const units: [number, 'day' | 'hour' | 'minute'][] =
+    days > 0 ? [[days, 'day'], [hours, 'hour']] : hours > 0 ? [[hours, 'hour'], [minutes, 'minute']] : [[minutes, 'minute']]
+  const parts = units
+    .filter(([value], index) => index === 0 || value > 0)
+    .map(([value, unit]) =>
+      new Intl.NumberFormat(locale, { style: 'unit', unit, unitDisplay: 'long' }).format(value)
+    )
+  // CJK units read without spaces ("6天18小时"); Intl adds one inside some of them ("6 天"), so
+  // drop it there too. Other scripts separate the parts with one space.
+  const cjk = /^(zh|ja|ko)/i.test(String(locale ?? ''))
+  const joined = cjk ? parts.map((part) => part.replace(/\s+/g, '')).join('') : parts.join(' ')
+  // Wrap with the locale's own "in N units" pattern: format 1 of the first unit and swap the phrase.
+  const sample = relative.formatToParts(1, units[0][1])
+  const number = sample.findIndex((part) => part.type === 'integer')
+  if (number < 0) {
+    return joined
+  }
+  const before = sample.slice(0, number).map((part) => part.value).join('')
+  const after = sample.slice(number + 1).map((part) => part.value).join('')
+  // The unit word follows the number inside the pattern; drop it, the joined text has its own.
+  const unitWord = new Intl.NumberFormat(locale, { style: 'unit', unit: units[0][1], unitDisplay: 'long' })
+    .formatToParts(1)
+    .filter((part) => part.type === 'unit')
+    .map((part) => part.value)[0]
+  const tail = unitWord && after.trimStart().startsWith(unitWord) ? after.trimStart().slice(unitWord.length) : after
+  return cjk ? `${before.trim()}${joined}${tail.trim()}` : `${before}${joined}${tail}`
 }
 
 function UsageWindowRow(props: { group: string; window: UpstreamUsageWindow }) {
@@ -86,7 +134,7 @@ function UsageWindowRow(props: { group: string; window: UpstreamUsageWindow }) {
         {Number.isNaN(resetsAt)
           ? t('Starts with the next request')
           : t('Resets {{time}}', {
-              time: formatTimestampRelative(resetsAt, 'milliseconds', locale),
+              time: formatResetIn(resetsAt, Date.now(), locale),
             })}
       </span>
     </div>
