@@ -41,6 +41,7 @@ const WINDOW_LABEL_KEYS: Record<string, string> = {
   '5h': '5 hours',
   '1d': 'Daily',
   '7d': 'Weekly',
+  '30d': '30 days',
 }
 
 function usageColor(percent: number): string {

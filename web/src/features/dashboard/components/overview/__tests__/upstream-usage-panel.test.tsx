@@ -96,6 +96,29 @@ describe('upstream quota panel', () => {
     ).toBeInTheDocument()
   })
 
+  it('names a 30-day window (a ChatGPT Free subscription in native mode)', async () => {
+    mockUpstreamUsage({
+      success: true,
+      data: {
+        generated_at: NOW.toISOString(),
+        groups: [
+          {
+            channel: 'GPT',
+            name: 'GPT',
+            windows: [{ window: '30d', percent: 61, resets_at: null }],
+          },
+        ],
+      },
+    })
+
+    renderPanel()
+
+    const group = await screen.findByRole('region', { name: 'GPT' })
+    expect(
+      within(group).getByRole('progressbar', { name: 'GPT 30 days' })
+    ).toHaveAttribute('aria-valuenow', '61')
+  })
+
   it('shows a provider lock under the group it affects', async () => {
     mockUpstreamUsage({
       success: true,
